@@ -1,4 +1,51 @@
-baseURL = "https://nlp4h.com/"
+baseURL = "https://nlp4h.com"
 languageCode = "en-us"
 title = "NLP 4 Healthcare"
+copyright = "Copyright © 2020 NLP4H Team (see authors); all rights reserved."
 theme = "npq-hugo"
+pygmentsUseClasses=true
+
+[params]
+  author = "NLP4H"
+  description = "We are a team of graduate students at University of Toronto working on NLP Projects for healthcare"
+  keywords = "NLP"
+  useAvatar = true
+  microBlogSection = "posts"
+  displayMicroBlog = false
+  displayRecent = true
+  recentMax = 4
+  mail = "nlp4health@gmail.com"
+  phone = ""
+  formspreeID = "yourformspreeID"
+
+[menu]
+  [[menu.main]]
+    name = "home"
+    pre = "<i class=\"fas fa-home fa-sm\"></i>"
+    url = "/"
+    weight = -9 
+  [[menu.main]]
+    name = "blog"
+    pre = "<i class=\"fas fa-keyboard fa-ms\"></i>"
+    url = "/blog/"
+    weight = -8
+  [[menu.main]]
+    name = "tags"
+    pre = "<i class=\"fas fa-tags fa-ms\"></i>"
+    url = "/tags"
+    weight = -7 
+  [[menu.main]]
+    name = "github"
+    pre = "<i class=\"fab fa-github fa-ms\"></i>"
+    url = "https://github.com/yourgithubusername23434"
+    weight = -6 
+  [[menu.main]]
+    name = "Authors"
+    pre = "<i class=\"fas fa-address-book fa-ms\"></i>"
+    url = "/authors.md"
+    weight = -4 
+  [[menu.main]]
+    name = "contact"
+    pre = "<i class=\"far fa-envelope\"></i>"
+    url = "/contact"
+    weight = -1 
