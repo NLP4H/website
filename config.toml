@@ -1,13 +1,13 @@
-baseURL = "https://example.com"
+baseURL = "https://nlp4h.com"
 languageCode = "en-us"
-title = "title"
-copyright = "Copyright © 2008–2019, Steve Francia and the Hugo Authors; all rights reserved."
+title = "NLP 4 Healthcare"
+copyright = "Copyright © 2020, NLP4H Team (see authors); all rights reserved."
 theme = "npq-hugo"
-themesdir = "../../"
+themesdir = "/themes"
 pygmentsUseClasses=true
 
 [params]
-  author = "your name"
+  author = "Test 1"
   description = "your description"
   keywords = "hugo blog"
   useAvatar = true
