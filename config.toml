@@ -3,7 +3,7 @@ languageCode = "en-us"
 title = "NLP 4 Healthcare"
 copyright = "Copyright © 2020, NLP4H Team (see authors); all rights reserved."
 theme = "npq-hugo"
-themesdir = "/themes"
+themesdir = "./themes"
 pygmentsUseClasses=true
 
 [params]
