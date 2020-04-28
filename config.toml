@@ -1,8 +1,9 @@
-baseURL = "https://www.example.com"
+baseURL = "https://example.com"
 languageCode = "en-us"
 title = "title"
 copyright = "Copyright © 2008–2019, Steve Francia and the Hugo Authors; all rights reserved."
 theme = "npq-hugo"
+themesdir = "../../"
 pygmentsUseClasses=true
 
 [params]
@@ -13,7 +14,7 @@ pygmentsUseClasses=true
   microBlogSection = "posts"
   displayMicroBlog = false
   displayRecent = true
-  recentMax = 4
+  recentMax = 3
   mail = "mail@example.com"
   phone = "8888888888"
   formspreeID = "yourformspreeID"
