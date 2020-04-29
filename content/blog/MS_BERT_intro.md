@@ -128,7 +128,7 @@ class ms_edss19_reader(DatasetReader):
 
 And include it in the config:
 
-```jsonnet {linenos=table}
+```json {linenos=table, linenostart=13}
 	"dataset_reader": {
             "type": "data_scripts.dataset_reader.ms_edss19_reader",
             "token_indexers": { 
@@ -153,7 +153,7 @@ In our case the sentence matrix is 768 x num_chunks and represents the encounter
 
 It is as simple as including this in the config of your model:
 
-```yaml
+```json {linenos=table,linenostart=39}
  "seq2vec_encoder": {
     "type": "cnn",
     "embedding_dim": hidden_size,
@@ -193,7 +193,7 @@ Previous * Having a shorter context length model - Quite a few of our errors com
 
 We include our full allennlp config that includes our custom dataset reader, model etc. If you want to know what each part does please take a look at our in-depth [tutorial](MEDIUM POST TO COME)
 
-```jsonnet {linenos=table}
+```json {linenos=table}
 local experiment_name = "cnn_edss19";
 
 {	"train_options": { 
