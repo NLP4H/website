@@ -12,11 +12,11 @@ However, the performance of these general language models can be impacted if the
 
 ## What is MS-BERT
 
-While BlueBERT is a strong language model for healthcare applications, we decided to further pre-trained it on ~35 million words originating from Multiple Sclerosis (MS) examinations. By further pre-training the BlueBERT model on a large corpus of consult notes, we provide a language model which aims to provide a deeper understanding of clinical texts, particularly those pertaining to Multiple Sclerosis.
+While BlueBERT is a strong language model for healthcare applications, we decided to further pre-train it on ~35 million words originating from Multiple Sclerosis (MS) examinations. By further pre-training BlueBERT on a large corpus of consult notes, we provide a language model which aims to provide a deeper understanding of clinical texts, particularly those pertaining to Multiple Sclerosis.
 
 Hence, in this article we look at further pre-training BlueBERT, to develop what we call Multiple Sclerosis-BERT (or MS-BERT for short), and how this language model may be used for clinical prediction tasks with an [AllenNLP](https://allennlp.org/) framework.
 
-MS-BERT is a model developed by students at the University of Toronto along with the Data Science and Advanced Analytics (DSAA) department at St. Michael's Hospital. Our model was able to beat previous baselines such as Word2Vec on numerous MS severity prediction tasks by up to almost 30%.
+MS-BERT is a model developed by students at the University of Toronto along with the Data Science and Advanced Analytics (DSAA) department at St. Michael's Hospital. Our model was able to beat previous baselines such as a Word2Vec CNN on numerous MS severity prediction tasks by up to almost 30%.
 
 ## Tutorial
 
@@ -26,7 +26,7 @@ In this section we take you through pre-training MS-BERT and using MS-BERT (with
 
 As we were using raw clinical notes, specifically consult notes, there were many identifiable attributes such as patient names, dates, locations and identification numbers. Removal of identifiable information is important not only to protect patient privacy but to also to help the model generalize across patients. 
 
-We processed the notes to remove footers and signature information. The footer and signature information contained no patient information and were a standard signature block that was common among all consult notes. Then, we collected a database of identifiable patient information. This information was combined with regular expression (regex) rules to find and replace identifiable information within the remaining text. We replaced the identifiable information with a contextually similar token from the BERT vocab. These tokens were chosen as they did not previously appear in the note cohort and retained similar contextual meaning in the note after replacement to the original identifiable information. For example, we would replace all male patient names to a male name that was not found within the dataset but was present as a token from the BERT vocab.
+We processed the notes to remove footers and signature information. The footer and signature information contained no patient information and were a standard signature block that was common among all consult notes. Then, we collected a database of identifiable patient information. This information was combined with regular expression (regex) rules to find and replace identifiable information within the remaining text. We replaced the identifiable information with a contextually similar token from the BERT vocab. These tokens were chosen as they did not previously appear in the note cohort and retained similar contextual meaning in the note after replacement to the original identifiable information. For example, we replaced all male patient names to a male name that was not found within the dataset but was present as a token from the BERT vocab.
 
 | ![de_id_dict](/figures/de_id_dict.png) | 
 |:--:| 
@@ -39,7 +39,7 @@ Next, the de-identified notes were pre-tokenized to the BERT vocabulary. This wa
 Once we had a de-identified note cohort, we could proceed with pre-training. Given the bi-directional nature of BERT and the size and nature of our notes, we used a masked language modeling pre-training task. We used BlueBERT as a starting point to train our model. Using our de-identified notes, 15% of the tokens from the notes were randomly masked with the task of predicting them based only on the context before and after each masked token. This process used code from the Transformers library and was based on the procedure outlined in [BERT](https://arxiv.org/abs/1810.04805) (Bidirectional Encoder Representations from Transformers), [BlueBERT](https://github.com/ncbi-nlp/bluebert), and [XL-Net](https://arxiv.org/abs/1906.08237). We trained our model over 50 epochs using 125000 training steps for each epoch.
 The masked language modeling pre-training task allowed our model to be better adapted to the MS consult notes by adjusting the internal weights of the BlueBERT model to better fit our note cohort. This pre-training results in a unique language model which we call MS-BERT. 
 
-You can run pre-training as follows:
+_You can run pre-training as follows:_
 
 ```sh {linenos=table}
 git clone https://github.com/NLP4H/MS-BERT.git
@@ -47,7 +47,7 @@ cd MS-BERT
 python pre_training.py --output_dir=output --model_type=bert --model_name_or_path=<path_to_blue_bert> --do_train --train_data_file=<path_to_notes_text_file> --mlm
 ```
 
-How to load MS-BERT:
+_Here is how you can load MS-BERT:_
 
 ```py {linenos=table}
 import transformers
@@ -59,13 +59,13 @@ model = AutoModel.from_pretrained("NLP4H/ms_bert")
 
 In order to use our MS-BERT model in a relevant clinical task, we developed a model using the  [AllenNLP](https://allennlp.org/) framework. AllenNLP is an open-source NLP library that offers a variety of state of the art models and tools built on top of a PyTorch implementation.
 
-For a more in-depth guide on this process check out our [tutorial](MEDIUM POST TO COME)
+_For a more in-depth guide on this process check out our [tutorial](MEDIUM POST TO COME)._
 
 ### Step 3: From Clinical Note to Chunk-Level Embedding(s)
 
 Most transformer models have a context length limited to a number of sub-word tokens (512 in case of BlueBERT and MS-BERT). However, the consult notes are often significantly longer than that. In order to address this, we split each tokenized note into chunks of the maximum context length, with the last one potentially being smaller. We use our MS-BERT model to generate chunk-level embeddings which results in a variable length output sequence of 768 dimensional chunk embedding vectors. Note that this chunking process is automated by AllenNLP as demonstrated in Step 5. 
 
-To tokenize your data use the following code but on your notes:
+_To tokenize your data use the following code but on your notes:_
 
 ```py {linenos=table}
 import transformers
@@ -77,7 +77,7 @@ tokenizer = BertTokenizer.from_pretrained('~/MS_BERT/vocab.txt')
 tokenized_text = tokenizer.encode(text, add_special_tokens=True)
 ```
 
-Now that your text is tokenized, you can use our dataset reader:
+_Now that your text is tokenized, you can use our dataset reader:_
 
 ```py {linenos=table}
 import os
@@ -136,7 +136,7 @@ class ms_edss19_reader(DatasetReader):
 			yield self.text_to_instance(text=row["tokenized_text"], ids=row["patient_id"], labels = label)
 ```
 
-And include it in the config:
+_And include it in the config:_
 
 ```json {linenos=table, linenostart=13}
 	"dataset_reader": {
@@ -153,7 +153,7 @@ And include it in the config:
 
 ### Step 4: Generating Note-Level Embeddings
 
-The next part of the architecture is meant to create a note-level embedding by combining the sequence of chunk-level embeddings. We used a CNN encoder provided in the AllenNLP library. This CNN encoder consists of 6 1D convolutions with kernels of size [2, 3, 4, 5, 6, 10] and 128 filters each for a total of 768 dimensions in the output. This output is our final note embedding. The CNN encoder is an implementation of Zhang & Wallace's method from [A Sensitivity Analysis of (and Practitioners’ Guide to) ConvolutionalNeural Networks for Sentence Classification](http://arxiv.org/abs/1510.03820) included in the AllenNLP library.
+The next part of the architecture is meant to create a note-level embedding by combining the sequence of chunk-level embeddings. We used a CNN encoder provided in the AllenNLP library. This CNN encoder consists of 6 1D convolutions with kernels of size [2, 3, 4, 5, 6, 10] and 128 filters each for a total of 768 dimensions in the output. This output is our final note embedding. The CNN encoder is an implementation of Zhang & Wallace's method from [A Sensitivity Analysis of (and Practitioners’ Guide to) Convolutional Neural Networks for Sentence Classification](http://arxiv.org/abs/1510.03820) included in the AllenNLP library.
 
 | ![note_level_embeddings](/figures/note_level_embeddings.PNG) |
 |:--:| 
@@ -161,7 +161,7 @@ The next part of the architecture is meant to create a note-level embedding by c
 
 In our case the sentence matrix is 768 x num_chunks and represents the encounter note as a sequence of chunk embeddings. We have 128 filters for each kernel size for a total of 768 filters. We do not predict directly from this feature space but rather feed the concatenated feature vector (our note-level embedding) as input to the next part of our model.
 
-It is as simple as including this in the config of your model:
+_It is as simple as including this in the config of your model:_
 
 ```json {linenos=table,linenostart=39}
  "seq2vec_encoder": {
@@ -189,7 +189,7 @@ We can see a significant improvement by MS-BERT over the baseline in prediction 
 
 Additionally, we see a very large improvement over baseline when looking at performance on sub-score prediction. Improving the mean accuracy (or Micro-F1)  by a massive 29.3%. This large gain is interesting because sub-score prediction is a much harder task. Sub-scores are not directly stated within the notes like EDSS. Instead they are often referenced, or symptoms for each sub-score are described. Thus, the significant improvement may come from MS-BERT’s ability to better capture the contextual information in order to determine sub-scores. 
 
-## What we would have done differently in retrospect
+## What We Would Have Done Differently in Retrospect
 
 Our model was trained on notes that were de-identified by replacing both doctor and patient names to the same name -> Ezekiel / Lucie Salamanca. The performance was still quite good as that information is not incredibly relevant to the severity of MS, but for other tasks, our embeddings might be sub-optimal.
 
@@ -197,9 +197,9 @@ We used a pre-trained BERT model with the original vocabulary which does not inc
 
 Because the notes are significantly longer then the model's context window (of 512 tokens), our model may not be able to pick up information that is scattered throughout the note. Therefore, the current method of combining embeddings may misrepresent what is actually contained in the note. This can be resolved by training a model like [Transformers-XL](https://arxiv.org/abs/1901.02860), which may come after changing the vocabulary.
 
-## Full config:
+## Full Config:
 
-We include our full allennlp config that includes our custom dataset reader, model etc. If you want to know what each part does please take a look at our in-depth [tutorial](MEDIUM POST TO COME)
+We include our full allennlp config that includes our custom dataset reader, model etc. _If you want to know what each part does please take a look at our in-depth [tutorial](MEDIUM POST TO COME)._
 
 ```json {linenos=table}
 local experiment_name = "cnn_edss19";
@@ -308,7 +308,10 @@ local experiment_name = "cnn_edss19";
 }
 ```
 
-## Thank you!
+## Thank You!
 Thanks for reading everyone! If you have any questions please do not hesitate to contact us at nlp4health (at gmail dot) com. :)
 
+## Acknowledgements
+
+We would like to thank the researchers and staff at the Data Science and Advanced Analytics (DSAA) department, St. Michael’s Hospital, for providing consistent support and guidance throughout this project. We would also like to thank Dr. Marzyeh Ghassemi, and Taylor Killan for providing us the opportunity to work on this exciting project.
 
