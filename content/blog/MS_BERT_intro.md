@@ -1,7 +1,7 @@
 ---
 title: "MS-BERT, Using Neurological Examination Notes to Further Pre-train BlueBERT for Multiple Sclerosis Severity Classification"
 date: 2020-04-28T20:11:53-04:00
-draft: false
+draft: true
 ---
 
 ## Motivation
