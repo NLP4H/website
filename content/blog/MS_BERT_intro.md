@@ -42,7 +42,7 @@ Add code snipet to run pre-training.py and how to load MS-BERT
 
 How to load MS-BERT:
 
-```py {lineos=table}
+```py {linenos=table}
 import os
 import pandas as pd
 from typing import Dict, List, Iterator, Tuple, Union
