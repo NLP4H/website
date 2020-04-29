@@ -136,7 +136,7 @@ And include it in the config:
                     "type": "pretrained_transformer",
                     "model_name": ms-bert,
                     "namespace": "tokens",
-                    "max_length": max_chunk_length,
+                    "max_length": 512,
                 }
             },
 ```
@@ -156,7 +156,7 @@ It is as simple as including this in the config of your model:
 ```json {linenos=table,linenostart=39}
  "seq2vec_encoder": {
     "type": "cnn",
-    "embedding_dim": hidden_size,
+    "embedding_dim": 768,
     "num_filters": 128,
     "ngram_filter_sizes": [2, 3, 4, 5, 6, 10]
 ```
