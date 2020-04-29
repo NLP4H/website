@@ -185,7 +185,7 @@ Our model was trained on notes that were de-identified by replacing both doctor 
 
 We used a pre-trained BERT model with the original vocabulary which does not include many clinical specific tokens, and includes many tokens which are virtually impossible to encounter in clinical notes (non-latin alphabet tokens, names). The next step in our pipeline is to rework the vocabulary and re-train our model on all of MIMIC + Pubmed (following the BlueBERT implementation) and our own notes with this modified vocabulary.
 
-Because the notes are significantly longer then the model's context window (of 512 tokens), our model may not be able to pick up information that is scattered throughout the note. Therefore, the current method of combining embeddings may misrepresent what is actually contained in the note. This can be resolved by training a model like transformer-xl, which may come after changing the vocabulary.
+Because the notes are significantly longer then the model's context window (of 512 tokens), our model may not be able to pick up information that is scattered throughout the note. Therefore, the current method of combining embeddings may misrepresent what is actually contained in the note. This can be resolved by training a model like [Transformers-XL](https://arxiv.org/abs/1901.02860), which may come after changing the vocabulary.
 
 ## Full config:
 
