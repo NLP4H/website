@@ -41,7 +41,7 @@ The masked language modeling pre-training task allowed our model to be better ad
 
 You can run pre-training as follows:
 
-```sh
+```sh {linenos=table}
 git clone https://github.com/NLP4H/MS-BERT.git
 cd MS-BERT
 python pre_training.py --output_dir=output --model_type=bert --model_name_or_path=<path_to_blue_bert> --do_train --train_data_file=<path_to_notes_text_file> --mlm
