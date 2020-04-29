@@ -11,7 +11,7 @@ pygmentsUseClasses=true
   keywords = "NLP"
   useAvatar = true
   microBlogSection = "posts"
-  displayMicroBlog = false
+  displayMicroBlog = true
   displayRecent = true
   recentMax = 4
   mail = "nlp4health@gmail.com"
@@ -30,14 +30,9 @@ pygmentsUseClasses=true
     url = "/blog/"
     weight = -8
   [[menu.main]]
-    name = "tags"
-    pre = "<i class=\"fas fa-tags fa-ms\"></i>"
-    url = "/tags"
-    weight = -7 
-  [[menu.main]]
     name = "github"
     pre = "<i class=\"fab fa-github fa-ms\"></i>"
-    url = "https://github.com/yourgithubusername23434"
+    url = "https://github.com/orgs/NLP4H/"
     weight = -6 
   [[menu.main]]
     name = "Authors"
