@@ -65,7 +65,17 @@ For a more in-depth guide on this process check out our [tutorial](MEDIUM POST T
 
 Most transformer models have a context length limited to a number of sub-word tokens (512 in case of BlueBERT and MS-BERT). However, the consult notes are often significantly longer than that. In order to address this, we split each tokenized note into chunks of the maximum context length, with the last one potentially being smaller. We use our MS-BERT model to generate chunk-level embeddings which results in a variable length output sequence of 768 dimensional chunk embedding vectors. Note that this chunking process is automated by AllenNLP as demonstrated in Step 5. 
 
-Add code snippet for tokenizing
+To tokenize your data use the following code but on your notes:
+
+```py {linenos=table}
+import transformers
+from transformers import BertModel, BertTokenizer
+
+text = "Your Clinical Notes"
+
+tokenizer = BertTokenizer.from_pretrained('~/MS_BERT/vocab.txt')
+tokenized_text = tokenizer.encode(text, add_special_tokens=True)
+```
 
 Now that your text is tokenized, you can use our dataset reader:
 
@@ -145,11 +155,11 @@ And include it in the config:
 
 The next part of the architecture is meant to create a note-level embedding by combining the sequence of chunk-level embeddings. We used a CNN encoder provided in the AllenNLP library. This CNN encoder consists of 6 1D convolutions with kernels of size [2, 3, 4, 5, 6, 10] and 128 filters each for a total of 768 dimensions in the output. This output is our final note embedding. The CNN encoder is an implementation of Zhang & Wallace's method from [A Sensitivity Analysis of (and Practitioners’ Guide to) ConvolutionalNeural Networks for Sentence Classification](http://arxiv.org/abs/1510.03820) included in the AllenNLP library.
 
-| ![note_level_embeddings](/figures/note_level_embeddings.PNG) | 
+| ![note_level_embeddings](/figures/note_level_embeddings.PNG) |
 |:--:| 
-| *Inspired by [A Sensitivity Analysis of (and Practitioners’ Guide to) ConvolutionalNeural Networks for Sentence Classification](http://arxiv.org/abs/1510.03820).* |
+| *Inspired by [A Sensitivity Analysis of (and Practitioners’ Guide to) Convolutional Neural Networks for Sentence Classification](http://arxiv.org/abs/1510.03820).* |
 
-In our case the sentence matrix is 768 x num_chunks and represents the encounter note as a sequence of chunk embeddings. We have 128 filters for each kernel size for a total of 768 filters. We do not predict directly from this feature space but rather feed the concatenated feature vector (our note-level embedding) as input to the next part of our model. 
+In our case the sentence matrix is 768 x num_chunks and represents the encounter note as a sequence of chunk embeddings. We have 128 filters for each kernel size for a total of 768 filters. We do not predict directly from this feature space but rather feed the concatenated feature vector (our note-level embedding) as input to the next part of our model.
 
 It is as simple as including this in the config of your model:
 
