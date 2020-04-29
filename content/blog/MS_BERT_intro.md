@@ -44,7 +44,7 @@ Add code snipet to run pre-training.py and how to load MS-BERT
 
 How to load MS-BERT:
 
-<script src="https://gist.github.com/MichalMalyska/091372c3021fd9dde17c5471c02225b0.js"></script>
+{{< gist MichalMalyska 50387452d7eb842175d97a8a7d7601f9 >}}
 
 ### AllenNLP Pipeline
 
