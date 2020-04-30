@@ -185,7 +185,7 @@ Lastly, we used AllenNLP’s training module to train and optimize our classifie
 
 A common measurement of multiple sclerosis (MS) severity is EDSS or the Expanded Disability Status Scale. This is a scale that increases from 0 to 10 depending on the severity of MS symptoms. It also consists of eight functional sub-scores that relate to how well specific systems or functions in your body work, such as bowel bladder, visual, etc. These were our main targets of prediction. 
 
-We can see a significant improvement by MS-BERT over the baseline in prediction of EDSS, raising Weighted-F1 from 0.897 to 0.941. Interestingly, our model performed better alone than when it was combined with rule based functions through a simple if statement or through Snorkel. 
+We can see a significant improvement by MS-BERT over the baseline in prediction of EDSS, raising Weighted-F1 from 0.897 to 0.941. Interestingly, our model performed better alone than when it was combined with rule based functions through a simple if statement or through Snorkel. _Want to learn more about Snorkel and how we used it? Check out our Snorkel [tutorial](COMING SOON)!_ 
 
 Additionally, we see a very large improvement over baseline when looking at performance on sub-score prediction. Improving the mean accuracy (or Micro-F1)  by a massive 29.3%. This large gain is interesting because sub-score prediction is a much harder task. Sub-scores are not directly stated within the notes like EDSS. Instead they are often referenced, or symptoms for each sub-score are described. Thus, the significant improvement may come from MS-BERT’s ability to better capture the contextual information in order to determine sub-scores. 
 
@@ -313,5 +313,5 @@ Thanks for reading everyone! If you have any questions please do not hesitate to
 
 ## Acknowledgements
 
-We would like to thank the researchers and staff at the Data Science and Advanced Analytics (DSAA) department, St. Michael’s Hospital, for providing consistent support and guidance throughout this project. We would also like to thank Dr. Marzyeh Ghassemi, and Taylor Killan for providing us the opportunity to work on this exciting project.
+We would like to thank the researchers and staff at the Data Science and Advanced Analytics (DSAA) department, St. Michael’s Hospital, for providing consistent support and guidance throughout this project. We would also like to thank Dr. Marzyeh Ghassemi, and Taylor Killan for providing us the opportunity to work on this exciting project. Lastly, we would like to thank Dr. Tony Antoniou and Dr. Jiwon Oh from the MS clinic at St. Michael's Hospital for their support on the neurological examination notes.
 
