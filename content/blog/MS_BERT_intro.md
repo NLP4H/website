@@ -24,20 +24,20 @@ In this section we take you through pre-training MS-BERT and using MS-BERT (with
 
 ### Step 1: Data Pre-Processing and De-identification
 
-As we were using raw clinical notes, specifically consult notes, there were many identifiable attributes such as patient names, dates, locations and identification numbers. Removal of identifiable information is important not only to protect patient privacy but to also to help the model generalize across patients. 
+As we were using raw clinical notes, specifically consult notes, there were many identifiable attributes such as patient names, dates, locations and identification numbers. Removal of identifiable information is important not only to protect patient privacy but also to help the model generalize across patients. 
 
 We processed the notes to remove footers and signature information. The footer and signature information contained no patient information and were a standard signature block that was common among all consult notes. Then, we collected a database of identifiable patient information. This information was combined with regular expression (regex) rules to find and replace identifiable information within the remaining text. We replaced the identifiable information with a contextually similar token from the BERT vocab. These tokens were chosen as they did not previously appear in the note cohort and retained similar contextual meaning in the note after replacement to the original identifiable information. For example, we replaced all male patient names to a male name that was not found within the dataset but was present as a token from the BERT vocab.
 
 | ![de_id_dict](/figures/de_id_dict.png) | 
 |:--:| 
-| *The tokens in the BERT vocab we used for text replacement as they were not originally found within the consult notes and have similar semantic meaning.* |
+| *The tokens in the BERT vocab we used for text replacement as they were not originally found within the consult notes and had similar semantic meaning.* |
  
 Next, the de-identified notes were pre-tokenized to the BERT vocabulary. This was done to speed up performance of downstream tasks as tokens could be read in directly vs repeatedly tokenizing each note for each task. We then split the note cohort into test train and validation sets.
 
 ### Step 2: Pre-Training MS-BERT
 
-Once we had a de-identified note cohort, we could proceed with pre-training. Given the bi-directional nature of BERT and the size and nature of our notes, we used a masked language modeling pre-training task. We used BlueBERT as a starting point to train our model. Using our de-identified notes, 15% of the tokens from the notes were randomly masked with the task of predicting them based only on the context before and after each masked token. This process used code from the Transformers library and was based on the procedure outlined in [BERT](https://arxiv.org/abs/1810.04805) (Bidirectional Encoder Representations from Transformers), [BlueBERT](https://github.com/ncbi-nlp/bluebert), and [XL-Net](https://arxiv.org/abs/1906.08237). We trained our model over 50 epochs using 125000 training steps for each epoch.
-The masked language modeling pre-training task allowed our model to be better adapted to the MS consult notes by adjusting the internal weights of the BlueBERT model to better fit our note cohort. This pre-training results in a unique language model which we call MS-BERT. 
+Once we had a de-identified note cohort, we could proceed with pre-training. Given the bi-directional nature of BERT and the size and nature of our notes, we used a masked language modelling pre-training task. We used BlueBERT as a starting point to train our model. Using our de-identified notes, 15% of the tokens from the notes were randomly masked with the task of predicting them based only on the context before and after each masked token. This process used code from the Transformers library and was based on the procedure outlined in [BERT](https://arxiv.org/abs/1810.04805) (Bidirectional Encoder Representations from Transformers), [BlueBERT](https://github.com/ncbi-nlp/bluebert), and [XL-Net](https://arxiv.org/abs/1906.08237). We trained our model over 50 epochs using 125000 training steps for each epoch.
+The masked language modelling pre-training task allowed our model to be better adapted to the MS consult notes by adjusting the internal weights of the BlueBERT model to better fit our note cohort. This pre-training results in a unique language model which we call MS-BERT. 
 
 _You can run pre-training as follows:_
 
@@ -199,7 +199,7 @@ Because the notes are significantly longer then the model's context window (of 5
 
 ## Full Config:
 
-We include our full allennlp config that includes our custom dataset reader, model etc. _If you want to know what each part does please take a look at our in-depth [tutorial](MEDIUM POST TO COME)._
+We include our full AllenNLP config that includes our custom dataset reader, model etc. _If you want to know what each part does please take a look at our in-depth [tutorial](MEDIUM POST TO COME)._
 
 ```json {linenos=table}
 local experiment_name = "cnn_edss19";
