@@ -1,7 +1,7 @@
 ---
 title: "MS-BERT, Using Neurological Examination Notes to Further Pre-train BlueBERT for Multiple Sclerosis Severity Classification"
 date: 2020-04-28T20:11:53-04:00
-draft: true
+draft: false
 ---
 
 ## Motivation
@@ -309,6 +309,7 @@ local experiment_name = "cnn_edss19";
 ```
 
 ## Thank You!
+
 Thanks for reading everyone! If you have any questions please do not hesitate to contact us at nlp4health (at gmail dot) com. :)
 
 ## Acknowledgements
