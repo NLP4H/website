@@ -1,15 +1,14 @@
 ---
-title: "About Us"
+title: "About Us - Welcome!"
 date: 2020-04-28T20:11:53-04:00
 draft: true
 ---
-# Welcome!
 
 We are group of graduate students at University of Toronto working on NLP for healthcare. 
 
-&nbsp;&nbsp;&nbsp;
+&nbsp;
 
-<h2 style="text-align:center">Our Team</h2>
+<h1 style="text-align:center">Our Team</h1>
 
 <div style="display:flex">
 
@@ -42,7 +41,7 @@ We are group of graduate students at University of Toronto working on NLP for he
 <div style="flex:0.7">
 
 
-### Alister D'Costa
+# Alister D'Costa
 ---
 
 *PhD Student, MSc Computer Science, University of Toronto*
@@ -53,14 +52,14 @@ I am a Computer Science PhD Student in the lab of Jared Simpson at the Universit
 
 </div>
 
-&nbsp;&nbsp;&nbsp;
+&nbsp;
 
 <div style="display:flex">
 
 <div style="flex:0.7">
 
 
-### Stefan Denkovski
+# Stefan Denkovski
 ---
 
 *Masters of Applied Science (Biomedical Engineering), University of Toronto*
@@ -92,7 +91,7 @@ I am a MASc student researching multimodal computer vision. I am interested in a
 
 </div>
 
-&nbsp;&nbsp;&nbsp;
+&nbsp;
 
 <div style="display:flex">
 
@@ -131,7 +130,7 @@ I am a MASc student researching multimodal computer vision. I am interested in a
 <div style="flex:0.7">
 
 
-### Michal Malyska
+# Michal Malyska
 ---
 
 *Masters of Statistics, University of Toronto*
@@ -141,14 +140,14 @@ I am a part-time MSc. student in Statistics at University of Toronto focusing on
 
 </div>
 
-&nbsp;&nbsp;&nbsp;
+&nbsp;
 
 <div style="display:flex">
 
 <div style="flex:0.7">
 
 
-### Sally Moon
+# Sally Moon
 ---
 
 *Masters of Applied Science (Biomedical Engineering), University of Toronto*
@@ -183,7 +182,7 @@ I am a MSc student researching machine learning approaches to predicting student
 </div>
 
 </div>
-
+&nbsp;
 
 <div style="display:flex">
 
@@ -216,7 +215,7 @@ I am a MSc student researching machine learning approaches to predicting student
 <div style="flex:0.7">
 
 
-### Brandon Rufino
+# Brandon Rufino
 ---
 
 *Masters of Health Science, University of Toronto*
