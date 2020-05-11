@@ -96,7 +96,7 @@ I am a MASc student researching multimodal computer vision. I am interested in a
 <div style="display:flex">
 
 <div style="flex:0.3; padding-left:2%; padding-right:2%; padding-top:5%;">
-<img src="/selfies/michal.jpg">
+<img src="/selfies/michal.png">
 <div style="display:flex;">
 
 <div style="flex:0.33; padding: 10% 5% 5% 0%;">
@@ -152,7 +152,7 @@ I am a part-time MSc. student in Statistics at University of Toronto focusing on
 
 *Masters of Applied Science (Biomedical Engineering), University of Toronto*
 
-I am a MSc student researching machine learning approaches to predicting student depression using smartphone sensors. I am affiliated with IBBME at University of Toronto and IATSL at Toronto Rehabilitation Institute. 
+I am a MSc student researching machine learning approaches to predicting student depression using smartphone sensors. I am researching with IBBME at University of Toronto and IATSL at Toronto Rehabilitation Institute. 
 </div>
 
 <div style="flex:0.3; padding-left:2%; padding-right:5%; padding-top:5%;">
@@ -187,7 +187,7 @@ I am a MSc student researching machine learning approaches to predicting student
 <div style="display:flex">
 
 <div style="flex:0.3; padding-left:2%; padding-right:5%; padding-top:5%;">
-<img src="/selfies/brandon.jpg">
+<img src="/selfies/brandon.png">
 <div style="display:flex;">
 
 <div style="flex:0.33; padding: 10% 5% 5% 10%;">
