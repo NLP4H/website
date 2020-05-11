@@ -1,7 +1,7 @@
 ---
 title: "About Us - Welcome!"
 date: 2020-04-28T20:11:53-04:00
-draft: true
+draft: false
 ---
 
 We are group of graduate students at University of Toronto working on NLP for healthcare. 
